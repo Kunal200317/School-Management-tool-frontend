@@ -126,7 +126,7 @@ export default function StudentAttendance() {
       }
     } catch (err) {
       console.error('Failed to load student profile:', err.message);
-      if (err.response?.status === 401) { localStorage.removeItem('user'); navigate('/login'); }
+      if (err.response?.status === 401) { localStorage.removeItem('user'); localStorage.removeItem('token'); navigate('/login'); }
     } finally {
       setLoading(false);
     }
@@ -153,6 +153,7 @@ export default function StudentAttendance() {
       await axios.post(`${API}/api/auth/logout`, {}, { withCredentials: true });
     } catch (err) { }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

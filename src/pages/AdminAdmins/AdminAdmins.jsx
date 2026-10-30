@@ -266,6 +266,7 @@ export default function AdminAdmins() {
       console.error('Logout request failed', err);
     }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

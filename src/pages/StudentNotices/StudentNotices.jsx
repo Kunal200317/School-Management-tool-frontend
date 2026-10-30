@@ -70,6 +70,7 @@ export default function StudentNotices() {
       console.error('Failed to load student profile:', err.message);
       if (err.response?.status === 401) {
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
         navigate('/login');
       }
     } finally {
@@ -84,6 +85,7 @@ export default function StudentNotices() {
       console.error('Logout error:', err.message);
     }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

@@ -38,7 +38,10 @@ export default function LoginPage() {
 
       setSuccess(`Successfully signed in as ${role}!`);
 
-      // Store user info in localStorage
+      // Store user info and token in localStorage
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
       localStorage.setItem('user', JSON.stringify(response.data.user || response.data));
 
       // Stagger navigate so user sees success state

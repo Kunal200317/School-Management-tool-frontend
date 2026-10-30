@@ -54,7 +54,7 @@ export default function TeacherAttendance() {
       setStudents(res.data.students.map(s => ({ ...s, newStatus: s.todayStatus || null })));
     } catch (err) {
       console.warn('Failed to load students:', err.message);
-      if (err.response?.status === 401) { localStorage.removeItem('user'); navigate('/login'); }
+      if (err.response?.status === 401) { localStorage.removeItem('user'); localStorage.removeItem('token'); navigate('/login'); }
     } finally {
       setLoading(false);
     }
@@ -89,6 +89,7 @@ export default function TeacherAttendance() {
   const handleSignOut = async () => {
     try { await axios.post(`${API}/api/auth/logout`, {}, { withCredentials: true }); } catch { }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

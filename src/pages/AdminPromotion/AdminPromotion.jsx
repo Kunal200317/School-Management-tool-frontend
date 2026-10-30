@@ -221,6 +221,7 @@ export default function AdminPromotion() {
   const handleSignOut = async () => {
     try { await axios.post(`${API}/api/auth/logout`, {}, { withCredentials: true }); } catch {}
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

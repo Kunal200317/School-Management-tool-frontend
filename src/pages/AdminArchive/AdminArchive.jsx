@@ -202,6 +202,7 @@ export default function AdminArchive() {
       console.error(err);
     }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

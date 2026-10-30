@@ -112,6 +112,7 @@ export default function AdminDashboard() {
       console.error('Logout request failed', err);
     }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

@@ -47,13 +47,14 @@ export default function TeacherDashboard() {
       setStats(res.data.stats);
     } catch (err) {
       console.warn('Dashboard fetch failed:', err.message);
-      if (err.response?.status === 401) { localStorage.removeItem('user'); navigate('/login'); }
+      if (err.response?.status === 401) { localStorage.removeItem('user'); localStorage.removeItem('token'); navigate('/login'); }
     }
   };
 
   const handleSignOut = async () => {
     try { await axios.post(`${API}/api/auth/logout`, {}, { withCredentials: true }); } catch { }
     localStorage.removeItem('user');
+    localStorage.removeItem('token');
     navigate('/login');
   };
 
